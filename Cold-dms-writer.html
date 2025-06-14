@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cold DM Writer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    button {
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #output {
+      background: #fff;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧊 Cold DM Writer</h1>
+
+  <label>What do you do?</label>
+  <input type="text" id="role" placeholder="e.g., I’m a UGC creator"/>
+
+  <label>Who are you messaging?</label>
+  <input type="text" id="target" placeholder="e.g., skincare brand"/>
+
+  <label>Choose tone</label>
+  <select id="tone">
+    <option>Friendly</option>
+    <option>Confident</option>
+    <option>Bold</option>
+  </select>
+
+  <button onclick="generateDM()">Generate DM</button>
+
+  <div id="output"></div>
+
+  <button onclick="copyToClipboard()">📋 Copy DM</button>
+
+  <script>
+    function generateDM() {
+      const role = document.getElementById('role').value;
+      const target = document.getElementById('target').value;
+      const tone = document.getElementById('tone').value;
+
+      let dm = "";
+
+      if (tone === "Friendly") {
+        dm = `Hey! I’m ${role}, and I really like what you’re doing with your ${target}. I’d love to collab or create some content for you — let me know if you're open to it!`;
+      } else if (tone === "Confident") {
+        dm = `Hi, I’m ${role}. I’ve helped brands like yours grow fast with content that works. I’d love to bring that to your ${target}. Open to chat?`;
+      } else if (tone === "Bold") {
+        dm = `Yo! ${role} here — I know I can make your ${target} pop off with powerful content. Let’s work together — when can we start?`;
+      }
+
+      document.getElementById('output').innerText = dm;
+    }
+
+    function copyToClipboard() {
+      const dmText = document.getElementById('output').innerText;
+      navigator.clipboard.writeText(dmText).then(() => {
+        alert("DM copied!");
+      });
+    }
+  </script>
+
+</body>
+</html>￼Enter
